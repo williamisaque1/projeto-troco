@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button onclick="cadastrar()">
+      <label>Cadastrar funcionário</label>
+    </button>
+    <p>
+      <button onclick="calcular_salario()">
+        <label>Calcular</label>
+      </button>
+    </p>
+
+    <script>
+      let prontuario = [];
+      let ano_inicial = 2022;
+      let ano_contagem = ano_inicial;
+
+      function percorrer_prontuario() {
+        for (i = 0; i < prontuario.length; i++) {
+          for (let index = 1; index <= 10; index++) {
+            calcular_salario(index, prontuario[i].valor);
+          }
+        }
+      }
+
+      function cadastrar() {
+        let nome = $("#funcionario").val();
+        let salario = parseInt($("#salario").val());
+
+        let colaborador = {
+          nome: nome,
+          valor: salario,
+        };
+
+        prontuario.push(colaborador);
+        console.log(prontuario);
+      }
+
+      function calcular_salario(tempo, salario) {
+        let taxa = 0.05;
+        let resultado = salario * (1 + taxa) ** tempo;
+
+        $("#resultado")[0].innerHTML += resultado.toFixed(2) + "<br>";
+      }
+    </script>
+  </body>
+</html>
